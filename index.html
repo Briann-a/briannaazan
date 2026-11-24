@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- adaptive sizing for components -->
+    <title>portfolio</title> <!-- browser tab title -->
+  </head>
+
+  <body overflow-x-hidden>
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+      <defs>
+        <!-- line boil for background assets -->
+         <filter id="boil-slow" x="-10%" y="-10%" width="120%" height="120%"> <!-- 10% buffer zone so wiggling doesn't cut off drawings -->
+          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="1"> <!-- random noise texture pattern (random values) - seed 1 = same arrangement of random waves-->
+            <animate attributeName="seed" values="1; 4; 9; 14; 1" dur="1.1s" repeatCount="indefinite" calcMode="discrete"/> <!-- change through 4 noise patterns every 1.1s with no stopping / morphing -->
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" scale="1.5" /> <!-- push/pull graphic lines by 1.5px using noise pattern (shifts a little bit) -->
+         </filter>
+
+         <!-- faster line boil for interactive assets -->
+          <filter id="boil-fast" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="2"> <!-- more random -->
+              <animate attributeName="seed" values="2; 7; 13; 19; 2" dur="0.55s" repeatCount="indefinite" calcMode="discrete" /> <!-- faster, more random jumps -->
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="2" /> <!-- larger warp by 2px -->
+          </filter>
+      </defs>
+    </svg>
+
+    <div id="root"></div> <!-- empty container for website -->
+    <script type="module" src="/src/main.jsx"></script> <!-- load main react app script -->
+  </body>
