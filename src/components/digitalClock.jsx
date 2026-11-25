@@ -11,7 +11,7 @@ export function DigitalClock() {
 
   const hours = now.getHours() % 12 || 12;
   const minutes = String(now.getMinutes()).padStart(2, '0');
-  const showColon = now.getSeconds() % 2 === 0;
+  const showColon = now.getSeconds() % 2 === 0; //show colon every other second (blinking digital clock)
 
   return (
     <div className="desk-scene-layer pointer-events-none boil-item text-xl" style={{zIndex: 25}}>
